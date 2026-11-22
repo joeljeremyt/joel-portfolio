@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joel Jeremy Tanumihardja — Graphic Designer & Living Sketchbook</title>
+  <meta name="description"
+    content="Personal portfolio of Joel Jeremy Tanumihardja, Visual Communication Design student at UPH. An interactive hand-drawn sketchbook world inspired by Woset.">
+  <meta name="keywords"
+    content="Joel Jeremy, Graphic Designer, Portfolio, Visual Communication Design, UPH, Sketchbook, Woset, Interactive Portfolio">
+  <meta name="author" content="Joel Jeremy Tanumihardja">
+
+  <!-- =========================================================================
+       GOOGLE ANALYTICS 4 (GA4)
+       Replace 'G-XXXXXXXXXX' below with your actual Measurement ID from Google Analytics
+       ========================================================================= -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Joel Jeremy — Living Sketchbook Portfolio">
+  <meta property="og:description"
+    content="Explore a world inside a living diary with playable character exploration, hand-drawn doodles, and design showcases.">
+  <meta property="og:image" content="asset/image/joel-profile.PNG">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="asset/image/joel-logo.png">
+
+  <!-- Adobe Typekit Stylesheet (click-clack, felt-tip-senior, playpen-sans) -->
+  <link rel="stylesheet" href="https://use.typekit.net/uty7rxq.css">
+
+  <!-- Preconnect Google Fonts & Fallbacks -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Patrick+Hand&display=swap"
+    rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="asset/css/style.css">
+</head>
+
+<body>
+
+  <!-- Subtle Paper Grain Overlay -->
+  <div class="paper-overlay" aria-hidden="true"></div>
+
+  <!-- Background Looping Ambient Music -->
+  <audio id="bg-music" loop preload="auto" playsinline>
+    <source src="asset/mp3/background-music.mp3" type="audio/mpeg">
+    <source src="mp3/background-music.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Cursor Scribble Canvas -->
+  <canvas id="cursor-trail-canvas" aria-hidden="true"></canvas>
+
+  <!-- Hand-Drawn Dynamic Breezy Wind Swoosh Layer -->
+  <div id="wind-swoosh-layer" class="wind-swoosh-layer" aria-hidden="true"></div>
+
+  <!-- =========================================================================
+       LOADING PAGE: UNFOLDING SKETCHBOOK
+       ========================================================================= -->
+  <div id="unfold-loader" role="dialog" aria-modal="true" aria-label="Open Joel's Sketchbook">
+    <div class="sketchbook-book">
+      <!-- Stationary Inside Right Page: Portal Sneak Peek to Home Page World -->
+      <div class="sketchbook-inside-page" aria-hidden="true">
+        <div class="portal-viewport">
+          <div class="portal-bg-pattern"></div>
+          <img id="portal-grass-bg" src="asset/image/grass-home.PNG" alt="" class="portal-grass-bg" aria-hidden="true">
+
+          <div class="portal-header">
+            <span class="portal-badge">WELCOME TO MY WORLD</span>
+            <h2 class="portal-title">Joel's Portfolio</h2>
+            <p class="portal-subtitle">Visual Communication Design • UPH</p>
+          </div>
+
+          <div class="portal-world-scene">
+            <div class="portal-actor portal-joel">
+              <img src="asset/image/joel-stand-left.PNG" alt="Joel" class="portal-joel-img">
+            </div>
+            <div class="portal-actor portal-dog">
+              <img src="asset/image/dog-left.PNG" alt="Churro" class="portal-dog-img">
+            </div>
+            <div class="portal-sparkle p-sparkle-1"></div>
+            <div class="portal-sparkle p-sparkle-2"></div>
+            <div class="portal-sparkle p-sparkle-3"></div>
+          </div>
+
+          <div class="portal-footer-hint">
+            <div class="portal-keys">
+              <span class="portal-key">W</span>
+              <span class="portal-key">A</span>
+              <span class="portal-key">S</span>
+              <span class="portal-key">D</span>
+            </div>
+            <span class="portal-hint-txt">Entering playable sketchbook world...</span>
+          </div>
+
+          <div class="portal-vignette-overlay"></div>
+        </div>
+      </div>
+
+      <!-- Spiral Spine -->
+      <div class="sketchbook-spine">
+        <div class="spine-ring"></div>
+        <div class="spine-ring"></div>
+        <div class="spine-ring"></div>
+        <div class="spine-ring"></div>
+        <div class="spine-ring"></div>
+        <div class="spine-ring"></div>
+        <div class="spine-ring"></div>
+        <div class="spine-ring"></div>
+      </div>
+
+      <!-- Flipping Cover Leaf with 3D Front and Back Faces -->
+      <div class="sketchbook-cover">
+        <!-- Front Cover Face -->
+        <div class="cover-face cover-front">
+          <p class="cover-tag">2026 Sketch Diary Vol. 01</p>
+          <h1 class="cover-title">Joel's Portfolio</h1>
+          <p class="cover-subtitle">Visual Communication Design • UPH</p>
+
+          <div class="cover-char-wrapper">
+            <img src="asset/image/joel-stand-left.PNG" alt="Joel character preview" class="cover-char-preview">
+          </div>
+
+          <button id="unfold-prompt-btn" class="unfold-prompt" type="button" aria-label="Unfold and enter sketchbook">
+            <svg class="sketch-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v3"></path>
+              <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v7"></path>
+              <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"></path>
+              <path
+                d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15">
+              </path>
+            </svg>
+            <span>Swipe or Click to Unfold</span>
+            <svg class="sketch-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Inside White Cover Face (shown when flipped open) -->
+        <div class="cover-face cover-back" aria-hidden="true">
+          <div class="inside-cover-paper">
+            <div class="inside-cover-content">
+              <p class="inside-sketch-brand">SKETCH DIARY • VOL. 01</p>
+              <div class="inside-owner-box">
+                <span class="owner-label">NAME / OWNER</span>
+                <span class="owner-val">Joel Jeremy Tanumihardja</span>
+                <div class="owner-line"></div>
+              </div>
+              <div class="inside-note-box">
+                <p class="note-quote">"A living diary of doodles, characters, and design experiments."</p>
+                <div class="arrow-to-portal">
+                  <span>Step Inside</span>
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       SITE HEADER & NAVIGATION
+       ========================================================================= -->
+  <header class="site-header">
+    <a href="#home" class="logo-container" aria-label="Joel's Portfolio Home">
+      <img src="asset/image/joel-logo.png" alt="Joel logo" class="logo-img">
+    </a>
+
+    <nav aria-label="Main Navigation">
+      <ul class="nav-menu">
+        <li class="nav-item active"><a href="#home" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+        <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
+        <li class="nav-item"><a href="#interactive" class="nav-link">Doodle Sandbox</a></li>
+        <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-controls">
+      <button id="music-toggle-btn" class="sound-toggle-btn music-toggle-btn" type="button"
+        aria-label="Toggle background music" title="Toggle background music">
+        <svg class="music-icon-svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M9 18V5l12-2v13"></path>
+          <circle cx="6" cy="18" r="3"></circle>
+          <circle cx="18" cy="16" r="3"></circle>
+        </svg>
+        <span class="music-btn-text">Music: ON</span>
+      </button>
+      <button id="sound-toggle-btn" class="sound-toggle-btn" type="button" aria-label="Toggle synthesized audio"
+        title="Toggle sound effects">
+        <svg class="sound-icon-svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+        </svg>
+        <span class="sound-btn-text">Sound: ON</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       FIXED SCREEN ACTORS: JOEL & DOG CHURRO
+       ========================================================================= -->
+  <!-- Joel Player Character Actor -->
+  <div id="character-actor" aria-label="Joel's playable character" role="img">
+    <div class="character-shadow"></div>
+    <div class="character-sprite-wrapper">
+      <img id="character-sprite-img" class="character-sprite" src="asset/image/joel-stand-left.PNG"
+        alt="Joel walking sprite">
+    </div>
+  </div>
+
+  <!-- Dog Companion Actor (Churro) -->
+  <div id="dog-actor" title="Click me to meet Churro!" role="button" aria-label="Joel's faithful dog Churro">
+    <div class="dog-actor-inner">
+      <div class="dog-shadow"></div>
+      <div class="dog-hint-bubble">
+        <span>Click me!</span>
+        <svg class="sketch-icon-inline" viewBox="0 0 24 24" width="13" height="13" fill="currentColor"
+          aria-hidden="true">
+          <path
+            d="M12 14c-1.8 0-3.5 1.2-3.5 3s1.5 3 3.5 3 3.5-1.2 3.5-3-1.7-3-3.5-3zm-5.5-3c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm11 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-8.5-5c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
+        </svg>
+      </div>
+      <img id="dog-sprite-img" class="dog-sprite" src="asset/image/dog-left.PNG" alt="Dog companion sprite">
+    </div>
+  </div>
+
+  <!-- Living Doodles Layer (Released into Portfolio World) -->
+  <div id="living-doodles-layer" aria-label="Living doodles wandering the portfolio"></div>
+
+  <!-- Dog Profile Popup Modal -->
+  <div id="dog-profile-modal" role="dialog" aria-modal="false" aria-label="Dog Profile">
+    <button id="dog-modal-close" class="modal-close-small" type="button" aria-label="Close dog profile">✕</button>
+    <img src="asset/image/dog-profile.PNG" alt="Churro polaroid" class="dog-polaroid-img">
+    <p class="dog-info-text">
+      <strong>Churro!</strong>
+      <svg class="sketch-icon-inline" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+        style="vertical-align: -2px; margin-left: 2px;">
+        <path
+          d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.5 1 1.695-.69 4-3.5 4-5.828z">
+        </path>
+        <path
+          d="M14 5.172C14 3.782 15.577 2.679 17.5 3c2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.5 1-1.695-.69-4-3.5-4-5.828z">
+        </path>
+        <path d="M7 14c0 3 2.2 5 5 5s5-2 5-5c0-4-2.2-7-5-7s-5 3-5 7z"></path>
+        <circle cx="10" cy="13" r="1" fill="currentColor"></circle>
+        <circle cx="14" cy="13" r="1" fill="currentColor"></circle>
+        <path d="M11 16h2"></path>
+      </svg><br>
+      Joel’s faithful sketchbook buddy, Pomeranian bundle of joy & head of creative naps!
+    </p>
+  </div>
+
+  <!-- =========================================================================
+       WORLD CONTENT (VERTICAL SECTIONS)
+       ========================================================================= -->
+  <main id="sketch-world">
+
+    <!-- 1. HOME SECTION -->
+    <section id="home" class="sketch-section">
+      <img id="home-grass-bg" src="asset/image/grass-home.PNG" alt="" class="section-doodle-bg" aria-hidden="true">
+
+      <div class="section-content home-content">
+        <div class="home-title-wrapper">
+          <h1 class="home-title">Joel’s Portfolio</h1>
+          <p class="home-subtitle">Visual Communication Design Student @ UPH • Tangerang & Bandung</p>
+        </div>
+
+        <div class="controls-hint-card">
+          <span class="key-badge">W</span>
+          <span class="key-badge">A</span>
+          <span class="key-badge">S</span>
+          <span class="key-badge">D</span>
+          <span class="hint-text">or arrow keys to walk & scroll the sketchbook world!</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. ABOUT SECTION -->
+    <section id="about" class="sketch-section">
+      <img src="asset/image/grass-about.PNG" alt="" class="section-doodle-bg" aria-hidden="true">
+
+      <div class="section-content">
+        <div class="about-grid">
+
+          <!-- Top Left: Joel Polaroid -->
+          <div class="about-profile-zone">
+            <div id="about-polaroid" class="interactive-polaroid" role="button" tabindex="0"
+              aria-label="Joel's Polaroid Photo">
+              <span class="click-hint-badge">
+                <span>Click me!</span>
+                <svg class="sketch-icon-inline" viewBox="0 0 24 24" width="14" height="14" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                </svg>
+              </span>
+              <img src="asset/image/joel-profile.PNG" alt="Joel Polaroid Photo" class="polaroid-img">
+            </div>
+
+            <div id="polaroid-bubble" class="speech-bubble" role="status">
+              <p id="polaroid-text" class="speech-text"></p>
+            </div>
+          </div>
+
+          <!-- Top Right: CV Doodle (cv-about) -->
+          <div class="about-cv-zone">
+            <div id="cv-bubble" class="speech-bubble cv-bubble" role="status">
+              <div class="cv-bubble-content">
+                <p id="cv-text" class="speech-text"></p>
+                <div class="cv-card-preview" id="cv-preview-trigger" role="button" tabindex="0"
+                  aria-label="Click to enlarge CV profile">
+                  <img src="asset/image/cv-profile.png" alt="Joel's CV Sheet" class="cv-preview-thumb">
+                  <span class="cv-enlarge-tag">
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                      <line x1="11" y1="8" x2="11" y2="14"></line>
+                      <line x1="8" y1="11" x2="14" y2="11"></line>
+                    </svg>
+                    Click to View Full CV
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div id="about-cv" class="interactive-cv" role="button" tabindex="0"
+              aria-label="Joel's Curriculum Vitae Doodle">
+              <span class="click-hint-badge">
+                <span>Click me!</span>
+                <svg class="sketch-icon-inline" viewBox="0 0 24 24" width="14" height="14" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <line x1="10" y1="9" x2="8" y2="9"></line>
+                </svg>
+              </span>
+              <img src="asset/image/cv-about.png" alt="Hand drawn CV doodle" class="cv-img">
+            </div>
+          </div>
+
+          <!-- Bottom: House -->
+          <div class="about-house-zone">
+            <div id="house-bubble" class="speech-bubble" role="status">
+              <p id="house-text" class="speech-text"></p>
+            </div>
+
+            <div id="about-house" class="interactive-house" role="button" tabindex="0" aria-label="Joel's House Doodle">
+              <span class="click-hint-badge">
+                <span>Click me!</span>
+                <svg class="sketch-icon-inline" viewBox="0 0 24 24" width="14" height="14" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+              </span>
+              <img src="asset/image/house.PNG" alt="Hand drawn house doodle" class="house-img">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. PROJECTS SECTION -->
+    <section id="projects" class="sketch-section">
+      <img src="asset/image/grass-projects.png" alt="" class="section-doodle-bg" aria-hidden="true">
+
+      <div class="section-content">
+        <div class="section-title-wrapper">
+          <div class="title-line"></div>
+          <h2 class="section-title">Projects</h2>
+          <div class="title-line"></div>
+        </div>
+
+        <div class="projects-carousel-container">
+          <button id="projects-prev-btn" class="carousel-btn" type="button" aria-label="Previous project">‹</button>
+
+          <div class="carousel-track">
+            <!-- Project Card 1 -->
+            <article class="project-card" data-project-id="1" tabindex="0" role="button"
+              aria-label="Fundamental Astronomy — Book Design &amp; Typography">
+              <div class="project-img-frame">
+                <img src="asset/image/projects-fundamentalastronomy.png" alt="Fundamental Astronomy book cover"
+                  class="project-thumb">
+              </div>
+              <h3 class="project-label">Fundamental Astronomy</h3>
+              <p class="project-tag">Book Design &amp; Typography</p>
+            </article>
+
+            <!-- Project Card 2 -->
+            <article class="project-card" data-project-id="2" tabindex="0" role="button"
+              aria-label="Tendangan Bebas — Film Poster &amp; Visual Identity">
+              <div class="project-img-frame">
+                <img src="asset/image/projects-tendanganbebas.png" alt="Tendangan Bebas film poster"
+                  class="project-thumb">
+              </div>
+              <h3 class="project-label">Tendangan Bebas</h3>
+              <p class="project-tag">Film Poster &amp; Visual Identity</p>
+            </article>
+
+            <!-- Project Card 3 -->
+            <article class="project-card" data-project-id="3" tabindex="0" role="button"
+              aria-label="Faculty of Design UPH — Rebranding &amp; Visual Identity">
+              <div class="project-img-frame">
+                <img src="asset/image/projects-fduph.png" alt="Faculty of Design UPH Merchandise &amp; Rebranding"
+                  class="project-thumb">
+              </div>
+              <h3 class="project-label">Faculty of Design UPH</h3>
+              <p class="project-tag">Rebranding &amp; Visual Identity</p>
+            </article>
+          </div>
+
+          <button id="projects-next-btn" class="carousel-btn" type="button" aria-label="Next project">›</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. EXPERIENCE SECTION -->
+    <section id="experience" class="sketch-section">
+      <div class="section-content">
+        <div class="section-title-wrapper">
+          <div class="title-line"></div>
+          <h2 class="section-title">Experience &amp; Leadership</h2>
+          <div class="title-line"></div>
+        </div>
+        <p class="section-subtitle-tag">2010 — Present</p>
+
+        <div class="timeline-container">
+          <div class="timeline-spine"></div>
+
+          <!-- GROUP 1: UNIVERSITAS PELITA HARAPAN -->
+          <div class="timeline-group-marker">
+            <span class="timeline-group-badge">Universitas Pelita Harapan • 2024 — Present</span>
+          </div>
+
+          <!-- Item 1: Faculty of Design UPH Rebranding -->
+          <div class="timeline-item">
+            <div class="timeline-pin"></div>
+            <div class="timeline-card">
+              <span class="timeline-year">2026</span>
+              <h3 class="timeline-role">Faculty of Design UPH — Rebranding &amp; Visual Identity</h3>
+              <p class="timeline-org">Universitas Pelita Harapan • Faculty of Design</p>
+              <div class="timeline-desc">
+                <ul>
+                  <li>Rebranded the <strong>Faculty of Design UPH</strong> (<a
+                      href="https://www.instagram.com/fd.uph?vrfl=ancxcGh6YTRocjdr" target="_blank"
+                      rel="noopener noreferrer"><strong>@fd.uph</strong></a>) and developed its comprehensive
+                    <strong>visual identity system</strong>.
+                  </li>
+                  <li>Extended the identity across its academic programs, including <strong>Architecture</strong>,
+                    <strong>Professional Architect Education (PPAr)</strong>, <strong>Visual Communication Design
+                      (VCD)</strong>, <strong>Interior Design</strong>, and <strong>Product Design</strong>.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2: Vice President VCD Student Association -->
+          <div class="timeline-item">
+            <div class="timeline-pin"></div>
+            <div class="timeline-card">
+              <span class="timeline-year">2025 — 2027 · TWO TERMS</span>
+              <h3 class="timeline-role">Vice President — VCD Student Association</h3>
+              <p class="timeline-org">Universitas Pelita Harapan • Visual Communication Design (VCD) • Graphic Design
+                Specialization</p>
+              <div class="timeline-desc">
+                <ul>
+                  <li>Serving as <strong>Vice President for two consecutive terms</strong>, contributing to
+                    <strong>student leadership</strong>, <strong>organizational development</strong>, and the
+                    <strong>VCD student community</strong>.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- GROUP 2: CAHAYA BANGSA CLASSICAL SCHOOL -->
+          <div class="timeline-group-marker">
+            <span class="timeline-group-badge">Cahaya Bangsa Classical School • 2010 — 2024</span>
+          </div>
+
+          <!-- Item 3: President CBCS Yearbook Committee -->
+          <div class="timeline-item">
+            <div class="timeline-pin"></div>
+            <div class="timeline-card">
+              <span class="timeline-year">2023 — 2024</span>
+              <h3 class="timeline-role">President — CBCS Yearbook Committee</h3>
+              <p class="timeline-org">Cahaya Bangsa Classical School</p>
+              <div class="timeline-desc">
+                <ul>
+                  <li>Formed and led a <strong>multidisciplinary team</strong> across design, photography, videography,
+                    journalism, curation, publishing, and sponsorship.</li>
+                  <li>Successfully <strong>published and distributed 625 copies</strong> to families across the school
+                    community.</li>
+                  <li>Previously served as a <strong>committee member and department head</strong>, specializing in
+                    <strong>design and illustration</strong>.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 4: Pathos Award Thesis Recognition -->
+          <div class="timeline-item">
+            <div class="timeline-pin"></div>
+            <div class="timeline-card">
+              <span class="timeline-year">2024</span>
+              <h3 class="timeline-role">Pathos Award — Thesis Recognition</h3>
+              <p class="timeline-org">Cahaya Bangsa Classical School</p>
+              <div class="timeline-desc">
+                <ul>
+                  <li>Received the prestigious <strong>Pathos Award</strong> for <em>The Homework Ate My Children</em>,
+                    a thesis examining how schools’ utilitarian approach to education has drifted from classical
+                    educational ideals, focusing on the practice of homework.</li>
+                  <li>Presented the thesis as a <strong>graduate example</strong> during a training session for
+                    <strong>CBCS teachers and staff</strong>.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 5: Founder & President CBCS Art Club -->
+          <div class="timeline-item">
+            <div class="timeline-pin"></div>
+            <div class="timeline-card">
+              <span class="timeline-year">2022 — 2023</span>
+              <h3 class="timeline-role">Founder &amp; President — CBCS Art Club</h3>
+              <p class="timeline-org">Cahaya Bangsa Classical School</p>
+              <div class="timeline-desc">
+                <ul>
+                  <li><strong>Founded and led</strong> a student art community to encourage artistic exploration and
+                    creative development.</li>
+                  <li>Established the club’s <strong>vision, mission, and curriculum</strong>.</li>
+                  <li>Organized <strong>creative projects and class sessions</strong> that integrated students’ artistic
+                    skills into the school community and events.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. INTERACTIVE SECTION: DOODLE SANDBOX -->
+    <section id="interactive" class="sketch-section">
+      <div class="section-content">
+        <div class="section-title-wrapper">
+          <div class="title-line"></div>
+          <h2 class="section-title">Doodle Sandbox</h2>
+          <div class="title-line"></div>
+        </div>
+
+        <p class="section-subtitle"
+          style="text-align: center; font-family: var(--font-typewriter); color: var(--pencil-lead); margin-top: -12px; margin-bottom: 24px; font-size: 14.5px;">
+          Draw your own doodle creation, bring it to life to wander the sketchbook world, and save your doodle world!
+        </p>
+
+        <!-- Doodle Studio Card -->
+        <div id="doodle-studio-card" class="interactive-card">
+          <!-- Drawing Tools & Controls Bar -->
+          <div class="doodle-toolbar">
+            <!-- Tool Selection -->
+            <div class="tool-group">
+              <span class="tool-group-label">Tool:</span>
+              <button id="tool-pen" class="tool-btn active" type="button" title="Pencil Pen">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                </svg>
+                <span>Pen</span>
+              </button>
+              <button id="tool-eraser" class="tool-btn" type="button" title="Eraser">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 14L10 22H2L6 18M18 14L22 10L14 2L10 6L18 14Z"></path>
+                </svg>
+                <span>Eraser</span>
+              </button>
+            </div>
+
+            <!-- Stroke Size -->
+            <div class="tool-group">
+              <span class="tool-group-label">Size:</span>
+              <button class="size-btn active" data-size="3" type="button" title="Fine Pencil (3px)">
+                <span class="dot-preview dot-fine"></span>
+                <span>Fine</span>
+              </button>
+              <button class="size-btn" data-size="7" type="button" title="Medium Pen (7px)">
+                <span class="dot-preview dot-med"></span>
+                <span>Med</span>
+              </button>
+              <button class="size-btn" data-size="14" type="button" title="Thick Marker (14px)">
+                <span class="dot-preview dot-thick"></span>
+                <span>Thick</span>
+              </button>
+            </div>
+
+            <!-- Monochrome Shades -->
+            <div class="tool-group">
+              <span class="tool-group-label">Shade:</span>
+              <button class="color-btn active" data-color="#1e1d1b" type="button" title="Charcoal Black">
+                <span class="swatch swatch-black"></span>
+                <span>Black</span>
+              </button>
+              <button class="color-btn" data-color="#4a4843" type="button" title="Pencil Lead">
+                <span class="swatch swatch-lead"></span>
+                <span>Lead</span>
+              </button>
+              <button class="color-btn" data-color="#8c8a84" type="button" title="Soft Graphite">
+                <span class="swatch swatch-faint"></span>
+                <span>Faint</span>
+              </button>
+            </div>
+
+            <!-- Canvas Actions -->
+            <div class="tool-group">
+              <button id="tool-undo" class="tool-btn" type="button" title="Undo Stroke (Ctrl+Z)">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 7v6h6"></path>
+                  <path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"></path>
+                </svg>
+                <span>Undo</span>
+              </button>
+              <button id="tool-clear" class="tool-btn" type="button" title="Clear Canvas">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                  </path>
+                </svg>
+                <span>Clear</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Drawing Pad Canvas -->
+          <div class="doodle-canvas-wrapper">
+            <!-- Edit / Redraw Banner -->
+            <div id="doodle-editing-banner" class="doodle-editing-banner hidden">
+              <div class="editing-banner-content">
+                <svg class="editing-icon-svg" viewBox="0 0 24 24" width="15" height="15" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <path d="M12 20h9"></path>
+                  <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                </svg>
+                <span class="editing-text">Redrawing <strong id="editing-pet-name">Pet</strong></span>
+              </div>
+              <div class="editing-banner-actions">
+                <button id="save-edit-pet-btn" class="editing-action-btn primary" type="button"
+                  title="Save changes to archive">Save Changes</button>
+                <button id="cancel-edit-pet-btn" class="editing-action-btn" type="button"
+                  title="Cancel redrawing">Cancel</button>
+              </div>
+            </div>
+
+            <canvas id="doodle-draw-canvas" width="800" height="420"></canvas>
+            <div id="doodle-canvas-hint" class="doodle-canvas-hint">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="2" x2="22" y2="6"></line>
+                <path d="M7.5 20.5 19 9l-4-4L3.5 16.5 2 22z"></path>
+              </svg>
+              <span>Draw your doodle friend here, then click "Bring to Life!"</span>
+            </div>
+          </div>
+
+          <!-- Bottom Action Bar -->
+          <div class="doodle-bottom-bar">
+            <div class="wanderer-status">
+              <span id="wanderer-count" class="wanderer-count-badge">0 wandering doodles in world</span>
+              <button id="clear-wanderers-btn" class="clear-wanderers-btn hidden" type="button"
+                title="Recall and store all wandering doodles in glossary book">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Store All in Book</span>
+              </button>
+            </div>
+
+            <div class="doodle-action-buttons">
+              <!-- Archive Book / Glossary Button -->
+              <button id="open-archive-btn" class="archive-book-btn" type="button"
+                title="Open Doodle Archive &amp; Pet Glossary">
+                <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                  <line x1="8" y1="7" x2="16" y2="7"></line>
+                  <line x1="8" y1="11" x2="14" y2="11"></line>
+                </svg>
+                <span>Pet Glossary</span>
+                <span id="archive-count-badge" class="archive-count-badge">0</span>
+              </button>
+
+              <button id="store-doodle-btn" class="store-doodle-btn" type="button"
+                title="Store this drawing directly into Pet Glossary without releasing">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                  <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                  <polyline points="7 3 7 8 15 8"></polyline>
+                </svg>
+                <span>Store to Book</span>
+              </button>
+
+              <button id="save-doodle-world-btn" class="save-doodle-btn" type="button"
+                title="Capture and save your doodle world to image & email">
+                <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                  <circle cx="12" cy="13" r="4"></circle>
+                </svg>
+                <span>Save Postcard</span>
+              </button>
+
+              <button id="bring-to-life-btn" class="bring-to-life-btn" type="button">
+                <svg class="sketch-icon-inline sparkle-icon" viewBox="0 0 24 24" width="18" height="18"
+                  fill="currentColor">
+                  <path d="M12 2l2.4 6.9 7.1 2.3-7.1 2.4L12 20.5l-2.4-6.9L2.5 11.2l7.1-2.3L12 2z" />
+                </svg>
+                <span>Bring to Life!</span>
+                <svg class="sketch-icon-inline sparkle-icon" viewBox="0 0 24 24" width="18" height="18"
+                  fill="currentColor">
+                  <path d="M12 2l2.4 6.9 7.1 2.3-7.1 2.4L12 20.5l-2.4-6.9L2.5 11.2l7.1-2.3L12 2z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. CONTACT SECTION -->
+    <section id="contact" class="sketch-section">
+      <div class="section-content">
+        <div class="section-title-wrapper">
+          <div class="title-line"></div>
+          <h2 class="section-title">Say Hello</h2>
+          <div class="title-line"></div>
+        </div>
+
+        <div class="contact-notebook-sheet">
+          <div class="notebook-header">
+            <h3 class="notebook-title">Leave a Note in Joel’s Diary</h3>
+            <span class="notebook-date">Date: October 2026</span>
+          </div>
+
+          <form id="contact-form" class="contact-form">
+            <div class="form-group">
+              <label for="contact-name" class="form-label">Your Name:</label>
+              <input type="text" id="contact-name" class="ruled-input" required placeholder="write your name here...">
+            </div>
+
+            <div class="form-group">
+              <label for="contact-email" class="form-label">Your Email:</label>
+              <input type="email" id="contact-email" class="ruled-input" required
+                placeholder="your.email@sketchbook.com">
+            </div>
+
+            <div class="form-group">
+              <label for="contact-message" class="form-label">Message / Collaboration Idea:</label>
+              <textarea id="contact-message" class="ruled-textarea" required
+                placeholder="say hi or propose an art project..."></textarea>
+            </div>
+
+            <button id="send-plane-btn" type="submit" class="send-plane-btn">
+              <svg class="plane-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+              <span>Fly Paper Plane</span>
+            </button>
+          </form>
+
+          <div class="social-links-row">
+            <a href="https://www.instagram.com/joel.jeremy.t?exln=cXE4ZmhkZmxyNGJ6" target="_blank"
+              rel="noopener noreferrer" class="social-badge" title="Instagram @joel.jeremy.t">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+              <span>@joel.jeremy.t</span>
+            </a>
+            <a href="https://www.threads.net/@nejukeju" target="_blank" rel="noopener noreferrer" class="social-badge"
+              title="Threads @nejukeju">
+              <svg viewBox="0 0 192 192" width="16" height="16" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M141.537 88.9883C140.71 88.5919 139.87 88.2104 139.019 87.8451C137.537 60.5382 122.616 44.905 97.5619 44.745C97.4484 44.7443 97.3355 44.7443 97.222 44.7443C82.2364 44.7443 69.7731 51.1409 62.102 62.7807L75.481 72.7303C80.9769 64.3938 89.2352 61.1274 97.222 61.1274C97.304 61.1274 97.3857 61.1274 97.4674 61.1279C108.825 61.2001 116.711 67.5834 119.574 81.332C112.593 80.2079 104.975 79.914 96.7924 80.4633C71.3685 82.1678 57.0673 95.8368 57.7346 114.654C58.3846 132.991 73.0805 146.069 91.5658 145.892C106.669 145.748 117.472 138.868 123.636 127.185C128.847 137.939 138.542 144.783 152.012 144.783C161.769 144.783 169.832 141.011 175.766 133.714C182.518 125.412 186.037 113.125 186.037 97.4587C186.037 81.2585 181.71 67.5323 173.344 57.1953C157.078 37.0945 130.984 26 97.222 26C65.5169 26 40.5985 36.6575 24.7176 56.5925C10.1583 74.869 2.222 99.4121 2.222 127.42C2.222 154.582 10.4284 178.694 25.7951 197.106C41.2829 215.666 65.626 226 97.222 226C121.263 226 142.138 219.014 157.917 205.811L147.279 193.003C134.484 203.716 117.637 209.434 97.222 209.434C71.218 209.434 50.8123 200.789 38.0772 184.821C25.4382 168.976 18.7884 149.277 18.7884 127.42C18.7884 104.316 25.2676 83.7431 37.3879 68.3243C50.6277 51.4812 71.4983 42.434 97.222 42.434C125.462 42.434 146.996 51.467 159.986 67.5029C166.502 75.5463 169.878 85.9084 169.878 97.4587C169.878 120.301 161.428 128.536 152.012 128.536C142.062 128.536 134.615 122.428 131.066 112.564C137.669 104.295 141.537 94.887 141.537 88.9883ZM103.541 129.587C89.5161 130.404 77.016 123.518 76.5414 110.158C76.108 97.9625 85.1278 88.8239 103.882 87.575C108.97 87.2346 113.884 87.4916 118.423 88.318C116.326 117.848 107.971 129.327 103.541 129.587Z" />
+              </svg>
+              <span>@nejukeju</span>
+            </a>
+            <a href="https://www.linkedin.com/in/joel-tanumihardja-276435357?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+              target="_blank" rel="noopener noreferrer" class="social-badge" title="LinkedIn">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+              <span>LinkedIn</span>
+            </a>
+            <a href="mailto:joeltanumihardjawork@gmail.com" class="social-badge"
+              title="Email: joeltanumihardjawork@gmail.com">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <span>Email</span>
+            </a>
+          </div>
+        </div>
+
+        <footer class="site-footer">
+          <p>Hand-crafted by Joel Jeremy Tanumihardja © 2026</p>
+        </footer>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       PROJECT DETAILS MODAL
+       ========================================================================= -->
+  <div id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-sheet">
+      <button id="modal-close-btn" class="modal-close-btn" type="button" aria-label="Close project modal">✕</button>
+
+      <!-- Media Gallery Column -->
+      <div class="modal-preview-col">
+        <div class="modal-media-stage-wrapper">
+          <div id="modal-media-stage" class="modal-media-stage">
+            <img id="modal-img" src="asset/image/projects-fundamentalastronomy.png" alt="Project preview"
+              class="modal-preview-img">
+          </div>
+          <button id="modal-slide-prev" class="modal-slide-arrow prev" type="button"
+            aria-label="Previous slide">‹</button>
+          <button id="modal-slide-next" class="modal-slide-arrow next" type="button" aria-label="Next slide">›</button>
+          <div id="modal-slide-counter" class="modal-slide-counter">1 / 1</div>
+        </div>
+
+        <div id="modal-slide-thumbs" class="modal-slide-thumbs" aria-label="Slide thumbnails">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <!-- Details Column -->
+      <div class="modal-details-col">
+        <span id="modal-badge" class="modal-badge">Book Design</span>
+        <h3 id="modal-title" class="modal-title">Fundamental Astronomy</h3>
+        <p id="modal-meta" class="modal-meta">2024 • Academic Publication</p>
+        <div id="modal-desc" class="modal-desc">Detailed design description...</div>
+
+        <div id="modal-tools" class="modal-tools-list">
+          <!-- Populated dynamically -->
+        </div>
+
+        <!-- Action Links: Learn More & Contact Me -->
+        <div class="modal-action-links">
+          <a id="modal-learn-more-btn" href="https://www.instagram.com/joel.jeremy.t?exln=cXE4ZmhkZmxyNGJ6"
+            target="_blank" rel="noopener noreferrer" class="modal-action-btn modal-learn-btn">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+            <span>Learn more (@joel.jeremy.t)</span>
+          </a>
+          <a id="modal-contact-btn" href="#contact" class="modal-action-btn modal-contact-btn">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+            <span>Contact me</span>
+          </a>
+        </div>
+
+        <!-- Project Switcher -->
+        <div class="modal-nav-row">
+          <button id="modal-prev-btn" class="modal-nav-btn" type="button">‹ Previous Project</button>
+          <button id="modal-next-btn" class="modal-nav-btn" type="button">Next Project ›</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       CV PROFILE DETAILS MODAL (FULL VIEW)
+       ========================================================================= -->
+  <div id="cv-profile-modal" class="sketch-modal" role="dialog" aria-modal="true" aria-labelledby="cv-modal-title">
+    <div class="cv-modal-backdrop"></div>
+    <div class="cv-modal-card">
+      <button id="cv-modal-close" class="modal-close-btn" type="button" aria-label="Close CV preview">✕</button>
+      <div class="cv-modal-header">
+        <h3 id="cv-modal-title" class="cv-modal-title">Curriculum Vitae</h3>
+        <p class="cv-modal-subtitle">Joel Jeremy Tanumihardja &bull; Visual Communication Design &bull; UPH</p>
+      </div>
+      <div class="cv-modal-scroll">
+        <img src="asset/image/cv-profile.png" alt="Joel Jeremy Tanumihardja Curriculum Vitae" class="cv-modal-full-img">
+      </div>
+      <div class="cv-modal-footer">
+        <a href="asset/image/cv-profile.png" target="_blank" download="Joel_Jeremy_Tanumihardja_CV.png"
+          class="cv-action-btn">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Open / Download High-Res CV
+        </a>
+        <button id="cv-contact-btn" class="cv-action-btn cv-contact-btn" type="button" title="Send Joel a message">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+          Contact Me
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       DOODLE SANDBOX SHARE / SAVE MODAL
+       ========================================================================= -->
+  <div id="doodle-share-modal" class="doodle-share-modal" role="dialog" aria-modal="true"
+    aria-labelledby="doodle-share-title">
+    <div class="doodle-share-sheet">
+      <button id="doodle-share-close-btn" class="modal-close-btn" type="button"
+        aria-label="Close save dialog">✕</button>
+
+      <div class="doodle-share-header">
+        <h3 id="doodle-share-title" class="doodle-share-heading">Doodle World Captured!</h3>
+        <p class="doodle-share-sub">Your living doodles and sketches have been framed into a keepsake sketchbook
+          postcard.</p>
+      </div>
+
+      <div class="doodle-share-preview-wrapper">
+        <img id="doodle-share-preview-img" src="" alt="Captured Doodle World Preview" class="doodle-share-preview-img">
+      </div>
+
+      <div class="doodle-share-body">
+        <div class="doodle-share-status">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>Saved to your downloads as <strong>Joel-Doodle-World.png</strong></span>
+        </div>
+
+        <form id="doodle-email-form" class="doodle-email-form">
+          <label for="doodle-email-input" class="doodle-email-label">Send this doodle to your email:</label>
+          <div class="doodle-email-row">
+            <input type="email" id="doodle-email-input" class="doodle-email-input" placeholder="your.email@example.com"
+              autocomplete="email">
+            <button type="submit" id="doodle-email-send-btn" class="doodle-email-btn">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+              <span>Share via Email</span>
+            </button>
+          </div>
+        </form>
+
+        <div class="doodle-share-actions">
+          <button id="doodle-share-redownload-btn" type="button" class="doodle-sub-action-btn">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Re-download Image</span>
+          </button>
+          <button id="doodle-share-done-btn" type="button" class="doodle-sub-action-btn doodle-done-btn">
+            <span>Keep Doodling</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       DOODLE BESTIARY & PET GLOSSARY ARCHIVE MODAL
+       ========================================================================= -->
+  <div id="doodle-archive-modal" class="doodle-archive-modal" role="dialog" aria-modal="true"
+    aria-labelledby="archive-modal-title">
+    <div class="archive-modal-sheet">
+      <button id="archive-modal-close-btn" class="modal-close-btn" type="button"
+        aria-label="Close glossary book">✕</button>
+
+      <!-- Book Header -->
+      <div class="archive-modal-header">
+        <h3 id="archive-modal-title" class="archive-modal-title">Doodle Pet Glossary</h3>
+        <p class="archive-modal-sub">
+          Your personal sketchbook archive of drawn creatures. Name them, release them into the world, store them to
+          rest, or redraw them!
+        </p>
+      </div>
+
+      <!-- Controls & Search Toolbar -->
+      <div class="archive-toolbar">
+        <div class="archive-search-box">
+          <svg class="archive-search-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="archive-search-input" class="archive-search-input" placeholder="Search pets by name..."
+            autocomplete="off">
+          <button id="archive-search-clear-btn" class="archive-search-clear-btn hidden" type="button"
+            title="Clear search">✕</button>
+        </div>
+
+        <div class="archive-filter-tabs">
+          <button class="archive-tab-btn active" data-filter="all" type="button">All (<span
+              id="archive-filter-all-count">0</span>)</button>
+          <button class="archive-tab-btn" data-filter="released" type="button">Roaming (<span
+              id="archive-filter-released-count">0</span>)</button>
+          <button class="archive-tab-btn" data-filter="stored" type="button">In Book (<span
+              id="archive-filter-stored-count">0</span>)</button>
+        </div>
+
+        <div class="archive-batch-actions">
+          <button id="archive-release-all-btn" class="archive-batch-btn" type="button"
+            title="Release all stored pets into the world">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 2l2.4 6.9 7.1 2.3-7.1 2.4L12 20.5l-2.4-6.9L2.5 11.2l7.1-2.3L12 2z"></path>
+            </svg>
+            <span>Release All</span>
+          </button>
+          <button id="archive-store-all-btn" class="archive-batch-btn" type="button"
+            title="Store all roaming pets back into the book">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Store All</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Pets Grid -->
+      <div id="archive-pets-grid" class="archive-pets-grid" role="region" aria-label="Archived Pets Collection">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Empty State -->
+      <div id="archive-empty-state" class="archive-empty-state hidden">
+        <div class="empty-state-art">
+          <svg viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 50A6 6 0 0 1 18 44H52"></path>
+            <path d="M18 10H52V54H18A6 6 0 0 1 12 48V16A6 6 0 0 1 18 10Z"></path>
+            <path d="M22 20L42 20"></path>
+            <path d="M22 28L36 28"></path>
+          </svg>
+        </div>
+        <h4 class="empty-state-title">Your Pet Glossary is Empty</h4>
+        <p class="empty-state-desc">
+          Draw an animal on the canvas and click <strong>&ldquo;Bring to Life!&rdquo;</strong> or <strong>&ldquo;Store
+            to Book&rdquo;</strong> to record your first companion.
+        </p>
+        <button id="archive-start-drawing-btn" class="archive-cta-btn" type="button">Draw a Pet Now</button>
+      </div>
+
+      <!-- Footer Stats -->
+      <div class="archive-modal-footer">
+        <span id="archive-stats-text" class="archive-stats-text">0 pets recorded in glossary</span>
+        <button id="archive-done-btn" class="archive-done-btn" type="button">Back to Sketchbook</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       FLOATING ERASER BUTTON
+       ========================================================================= -->
+  <button id="floating-eraser-btn" type="button" aria-label="Erase cursor pencil scribbles">
+    <span class="eraser-tooltip">Clear Scribbles</span>
+    <svg class="eraser-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M18 14L10 22H2L6 18M18 14L22 10L14 2L10 6L18 14Z" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round" />
+      <path d="M6 18L10 14" stroke-width="2" stroke-linecap="round" />
+    </svg>
+  </button>
+
+  <!-- =========================================================================
+       MOBILE ON-SCREEN D-PAD CONTROLS
+       ========================================================================= -->
+  <div id="mobile-dpad" aria-label="On screen walking controls">
+    <button id="dpad-up" class="dpad-btn dpad-up" type="button" aria-label="Walk Up">▲</button>
+    <button id="dpad-left" class="dpad-btn dpad-left" type="button" aria-label="Walk Left">◀</button>
+    <button id="dpad-down" class="dpad-btn dpad-down" type="button" aria-label="Walk Down">▼</button>
+    <button id="dpad-right" class="dpad-btn dpad-right" type="button" aria-label="Walk Right">▶</button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="asset/js/sketchbook.js"></script>
+  <script src="asset/js/character.js"></script>
+</body>
+
+</html>
